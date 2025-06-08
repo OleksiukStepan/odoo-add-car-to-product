@@ -1,0 +1,47 @@
+<odoo>
+  <!-- List View for fleet.vehicle.model -->
+  <record id="view_fleet_vehicle_model_list_compatible" model="ir.ui.view">
+    <field name="name">fleet.vehicle.model.list.compatible</field>
+    <field name="model">fleet.vehicle.model</field>
+    <field name="type">list</field>
+    <field name="arch" type="xml">
+      <list string="Compatible Vehicles" editable="bottom">
+        <field name="brand_id" string="Manufacturer"/>
+        <field name="name" string="Model name"/>
+        <field name="model_type" string="Model type"/>
+        <field name="model_year_from" string="Year from"/>
+        <field name="model_year_to" string="Year to"/>
+        <field name="volume" string="Volume"/>
+        <field name="default_fuel_type" string="Fuel Type"/>
+        <field name="transmission" string="Transmission"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Form View for fleet.vehicle.model -->
+  <record id="view_fleet_vehicle_model_form_compatible" model="ir.ui.view">
+    <field name="name">fleet.vehicle.model.form.compatible</field>
+    <field name="model">fleet.vehicle.model</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form string="Vehicle Model">
+        <sheet>
+          <group>
+            <group>
+              <field name="brand_id"/>
+              <field name="name"/>
+              <field name="model_type"/>
+            </group>
+            <group>
+              <field name="model_year_from"/>
+              <field name="model_year_to"/>
+              <field name="volume"/>
+              <field name="default_fuel_type"/>
+              <field name="transmission"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

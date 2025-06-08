@@ -1,0 +1,17 @@
+<odoo>
+  <!-- Root menu for AutoParts -->
+  <menuitem
+    id="menu_root_autoparts"
+    name="AutoParts"
+    sequence="10"
+  />
+
+  <!-- Submenu that opens Product Variants -->
+  <menuitem
+    id="menu_product_variants_custom"
+    name="Product Variants"
+    parent="add_car_to_product.menu_root_autoparts"
+    action="product.product_normal_action"
+    sequence="15"
+  />
+</odoo>
