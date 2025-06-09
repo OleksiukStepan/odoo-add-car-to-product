@@ -1,0 +1,68 @@
+<odoo>
+  <!-- Inherit the base form view of fleet.vehicle.model to add and reorder fields -->
+  <record id="view_fleet_vehicle_model_form_inherit_car_fields" model="ir.ui.view">
+    <field name="name">fleet.vehicle.model.form.inherit.car.fields</field>
+    <field name="model">fleet.vehicle.model</field>
+    <field name="inherit_id" ref="fleet.fleet_vehicle_model_view_form"/>
+    <field name="arch" type="xml">
+
+      <!-- Replace title block to swap Manufacturer and Model Name positions -->
+      <xpath expr="//div[@class='oe_title']" position="replace">
+        <div class="oe_title">
+          <label for="brand_id"/>
+          <h1>
+            <field name="brand_id" placeholder="e.g. BMW"/>
+          </h1>
+          <label for="name"/>
+          <h2>
+            <field name="name" placeholder="e.g. X1"/>
+          </h2>
+        </div>
+      </xpath>
+
+      <!-- Insert a new group with additional vehicle model fields after the main group -->
+      <xpath expr="//sheet/group" position="after">
+        <group string="Model Details">
+          <group>
+            <field name="model_type"/>
+            <field name="ovoko_car_id"/>
+          </group>
+          <group>
+            <field name="model_year_from"/>
+            <field name="model_year_to"/>
+          </group>
+          <group>
+            <field name="volume"/>
+          </group>
+        </group>
+      </xpath>
+
+    </field>
+  </record>
+
+  <!-- Custom list view for vehicle models with reordered and extended fields -->
+  <record id="fleet_vehicle_model_list_custom" model="ir.ui.view">
+    <field name="name">fleet.vehicle.model.list.custom</field>
+    <field name="model">fleet.vehicle.model</field>
+    <field name="type">list</field>
+    <field name="arch" type="xml">
+      <list string="Models">
+        <field name="brand_id" string="Manufacturer"/>
+        <field name="name" string="Model name"/>
+        <field name="model_type" string="Model type"/>
+        <field name="model_year_from" string="Year from"/>
+        <field name="model_year_to" string="Year to"/>
+        <field name="volume"/>
+        <field name="default_fuel_type" string="Fuel Type"/>
+        <field name="transmission"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Override the default action to use the custom list view above -->
+  <record id="fleet.fleet_vehicle_model_action" model="ir.actions.act_window">
+    <field name="view_mode">list,form</field>
+    <field name="view_id" ref="add_car_to_product.fleet_vehicle_model_list_custom"/>
+  </record>
+
+</odoo>

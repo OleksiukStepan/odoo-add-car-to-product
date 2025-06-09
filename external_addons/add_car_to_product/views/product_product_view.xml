@@ -1,0 +1,41 @@
+<odoo>
+
+  <!-- FORM VIEW -->
+  <record id="view_product_product_form_inherit_vehicle_info" model="ir.ui.view">
+    <field name="name">product.product.form.inherit.vehicle.info</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_normal_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='name']" position="after">
+        <field name="vehicle_info" readonly="1" style="white-space: nowrap;"/>
+      </xpath>
+    </field>
+  </record>
+
+  <!-- TREE / LIST VIEW-->
+  <record id="view_product_product_list_inherit_vehicle_info" model="ir.ui.view">
+    <field name="name">product.product.list.inherit.vehicle.info</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_product_tree_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='name']" position="after">
+        <field name="vehicle_info" string="Vehicle Info"/>
+      </xpath>
+    </field>
+  </record>
+
+  <!--  KANBAN VIEW -->
+  <record id="view_product_product_kanban_inherit_vehicle_info" model="ir.ui.view">
+    <field name="name">product.product.kanban.inherit.vehicle.info</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_kanban_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='name']" position="after">
+        <div class="o_kanban_record_subtitle text-muted">
+          <field name="vehicle_info"/>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

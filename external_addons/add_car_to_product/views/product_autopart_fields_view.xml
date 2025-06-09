@@ -1,0 +1,37 @@
+<odoo>
+  <record id="product_product_form_autopart_fields" model="ir.ui.view">
+    <field name="name">product.product.form.autopart.fields</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_normal_form_view"/>
+    <field name="arch" type="xml">
+
+      <!-- Add a new tab Autoparts to the product variant form view -->
+      <xpath expr="//form/sheet/notebook" position="inside">
+        <page string="Autoparts"
+              groups="add_car_to_product.group_car"
+              invisible="not is_autoparts">
+
+          <group>
+            <field name="for_all_models"/>
+            <field name="oem"/>
+            <field name="compatible_vehicle_ids"
+                   widget="many2many"
+                   context="{
+                      'list_view_ref': 'add_car_to_product.view_fleet_vehicle_model_list_compatible', 
+                      'form_view_ref': 'add_car_to_product.view_fleet_vehicle_model_form_compatible'
+                   }"/>
+          </group>
+        </page>
+      </xpath>
+
+      <!-- Add core autopart fields below the product_tooltip field -->
+      <xpath expr="//field[@name='product_tooltip']" position="after">
+        <field name="is_autoparts" readonly="0"/>
+        <field name="ovoko_part_id"/>
+      </xpath>
+
+
+    </field>
+  </record>
+
+</odoo>
