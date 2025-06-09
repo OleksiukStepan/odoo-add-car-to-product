@@ -16,6 +16,7 @@
         "views/fleet_vehicle_model_views.xml",
         "views/compatible_vehicle_ids_views.xml",
         "views/website_product_vehicle_filter.xml",
+        "views/website_product_compatible_vehicles.xml"
     ],
     "installable": True,
     "application": True,

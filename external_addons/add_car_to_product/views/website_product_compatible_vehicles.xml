@@ -1,0 +1,24 @@
+<odoo>
+  <template id="product_compatible_vehicles"
+            inherit_id="website_sale.product"
+            name="Product Compatible Vehicles Block">
+
+    <!-- Add compatible vehicle block -->
+    <xpath expr="//div[contains(@class, 'js_product')]" position="after">
+      <div class="mt-3 mb-3">
+        <h5>Compatible Vehicles:</h5>
+        <ul>
+          <t t-foreach="product.product_variant_ids.mapped('compatible_vehicle_ids')" t-as="v">
+            <li>
+              <t t-esc="v.brand_id.name"/> <t t-esc="v.name"/>
+              <t t-if="v.model_type">(<t t-esc="v.model_type"/>)</t>
+              <t t-if="v.model_year_from"> <t t-esc="v.model_year_from"/></t>
+              <t t-if="v.model_year_to"> - <t t-esc="v.model_year_to"/></t>
+            </li>
+          </t>
+        </ul>
+      </div>
+    </xpath>
+
+  </template>
+</odoo>
