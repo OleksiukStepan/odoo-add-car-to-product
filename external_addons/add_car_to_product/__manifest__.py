@@ -10,7 +10,7 @@
         "security/ir.model.access.csv",
         "security/security.xml",
         "views/product_menu_views.xml",
-        "views/product_product_view.xml",
+        # "views/product_product_view.xml",
         "views/product_template_views.xml",
         "views/product_autopart_fields_view.xml",
         "views/fleet_vehicle_model_views.xml",

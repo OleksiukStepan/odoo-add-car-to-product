@@ -29,21 +29,26 @@ class ProductProductAutopart(models.Model):
     @api.depends("compatible_vehicle_ids")
     def _compute_vehicle_info(self):
         for rec in self:
+            old_vehicle_info = rec.vehicle_info or ""
+
+            # Remove old vehicle info from the product name if present
+            if old_vehicle_info and old_vehicle_info in rec.name:
+                rec.name = rec.name.replace(old_vehicle_info, "").strip()
+
             if rec.compatible_vehicle_ids:
                 v = rec.compatible_vehicle_ids[0]
-
-                parts = filter(
-                    None,
-                    [
-                        v.brand_id.name,
-                        v.name,
-                        v.model_type,
-                        self._get_years(v.model_year_from, v.model_year_to),
-                    ],
-                )
+                parts = filter(None, [
+                    v.brand_id.name,
+                    v.name,
+                    v.model_type,
+                    rec._get_years(v.model_year_from, v.model_year_to),
+                ])
                 rec.vehicle_info = " ".join(parts)
             else:
                 rec.vehicle_info = ""
+
+            # change product.name according to new vehicle_info
+            rec.name = f"{rec.name} {rec.vehicle_info}".strip()
 
     # Return formatted year range string like "2010 - 2015", "... - 2015", etc.
     def _get_years(self, year_from, year_to):
